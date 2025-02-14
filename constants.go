@@ -24,5 +24,6 @@ const(
 func main(){
 	// ...
 	// ...
-	fmt.Printf("%d %d %d %d %d\n", A, B, C, D, E)
+	fmt.Printf("%d %d %d %d %d %d\n", A, B, C, D, E, F)
+	// prints 0 1 2 3 4 
 }
