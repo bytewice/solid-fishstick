@@ -5,7 +5,7 @@ import(
 )
 
 // aparentemente p passar um slice faz name_slice []int
-func getMax( vals []int) int{
+func getMax( vals ...int) int{
 	maxV := -1
 	for _, v := range vals{
 		if v > maxV { maxV = v}
@@ -14,6 +14,9 @@ func getMax( vals []int) int{
 }
 
 func main(){
+
+	// só vai executar depois que a função chegar ao fim --- nesse caso depois do fmt.Println("Hello!") no fim da main
+	defer fmt.Println("\nBye!")
 
 	sli := make([]int, 10)
 	
@@ -33,5 +36,7 @@ func main(){
 	fmt.Println(sli)
 
 	// printar o getMax"
-	fmt.Printf("valor máximo é %d\n",getMax(sli))
+	fmt.Printf("valor máximo é %d\n",getMax(sli...))
+
+	fmt.Println("Hello!")
 }

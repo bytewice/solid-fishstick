@@ -1,0 +1,7 @@
+Não sei pq n tá funcionando, tentei dar ```go mod init encapsulation``` mas não foi,
+depois volto pra tentar novamente
+
+
+→ Consegui, aparentemente da o got mod init encapsulation, cria uma pasta e no package main
+adicionar o import "encapsulation/folder" com folder sendo a pasta que você colocou os pacotes
+q serão adicionados :)
