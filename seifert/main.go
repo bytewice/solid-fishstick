@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+//	"my_project/reidemeister" // Importa o pacote criado
 )
 
 type Knot struct{
@@ -54,6 +55,36 @@ func generateTrefoil() [][]int {
 	}
 }
 
+// Função para adicionar uma volta (Movimento I)
+func reidemeisterI(knot Knot) Knot {
+	n := knot.Crossings
+
+	// Cria uma nova matriz com uma linha e coluna adicionais
+	newMatrix := make([][]int, n+1)
+	for i := range newMatrix {
+		newMatrix[i] = make([]int, n+1)
+	}
+
+	// Copia a matriz original para a nova matriz
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			newMatrix[i][j] = knot.Matrix[i][j]
+		}
+	}
+
+	// Adiciona a nova curva de Seifert
+	newMatrix[n][n] = 2 // Diagonal principal
+	if n > 0 {
+		newMatrix[n][n-1] = -1 // Conexão com a curva anterior
+		newMatrix[n-1][n] = -1 // Simetria da matriz
+	}
+
+	return Knot{
+		Crossings: n + 1,
+		Matrix:    newMatrix,
+	}
+}
+
 func main() {
 	nCrossings := 4 // Number of crossings in the knot
 
@@ -68,5 +99,9 @@ func main() {
 	printMatrix(seifertMatrix)
 	
 	fmt.Println("Trefoil:")
+	printMatrix(trefoil.Matrix)
+
+	fmt.Println("Reidemeister I no trefoil...")
+	trefoil = reidemeisterI(trefoil)
 	printMatrix(trefoil.Matrix)
 }
